@@ -13,8 +13,7 @@ public class sdsd
         int a = list.size();
         System.out.println(a);
 
-
-    }
+   }
 //                        try
 //    {
 //        do

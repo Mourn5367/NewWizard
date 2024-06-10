@@ -13,21 +13,23 @@ public class Main
         Random rand = new Random();
         GameMaster gameMaster = new GameMaster();
         Scanner sc = new Scanner(System.in);
+
         while(run)
         {
             switch (state)
             {
                 // 마법사가 때리기
                 case 0:
-
                     for (int i = 0; i < gameMaster.wizardCount; i++)
                     {
-                        int selectMon = gameMaster.wizards.get(i).SelectMonster(gameMaster,gameMaster.wizards.get(i));
-                        gameMaster.wizards.get(i).Attack(gameMaster,gameMaster.monsters.get(selectMon-1),gameMaster.wizards.get(i));
+                        int indexWizard = gameMaster.SelectWizard();
+                        int selectMon = gameMaster.wizards.get(indexWizard).SelectMonster(gameMaster,gameMaster.wizards.get(indexWizard));
+                        gameMaster.wizards.get(indexWizard).Attack(gameMaster,gameMaster.monsters.get(selectMon-1),gameMaster.wizards.get(indexWizard));
                         gameMaster.RemoveMonster(gameMaster.monsters);
+                        gameMaster.MoveWizardToNoActionList();
                         if (gameMaster.monsters.isEmpty())
                         {
-                            System.out.println("전부 죽였다.");
+                            System.out.println("적을 전부 죽였다.");
                             break;
                         }
                     }
@@ -41,19 +43,25 @@ public class Main
                         state = 1;
                     }
                     break;
+                    // 몬스터가 때리기
                 case 1:
+                    gameMaster.MoveNoActionListToWizards();
                     for (int i = 0 ; i< gameMaster.monsterCount; i++)
                     {
                         int randWizard = rand.nextInt(gameMaster.wizardCount);
+//                        gameMaster.monsters.get(i).Attack(gameMaster.wizardsNoAction.get(randWizard));
+//                        gameMaster.RemoveWizard(gameMaster.wizardsNoAction);
                         gameMaster.monsters.get(i).Attack(gameMaster.wizards.get(randWizard));
                         gameMaster.RemoveWizard(gameMaster.wizards);
                         if (gameMaster.wizards.isEmpty())
+//                        if (gameMaster.wizardsNoAction.isEmpty())
                         {
-                            System.out.println("전부 죽었다.");
+                            System.out.println("플레이어 유닛이 전부 죽었다.\n");
                             break;
                         }
                     }
                     if (gameMaster.wizards.isEmpty())
+//                    if (gameMaster.wizardsNoAction.isEmpty())
                     {
                         state = 4;
                         break;
@@ -77,6 +85,7 @@ public class Main
                                 gameMaster.monsters.get(i).GetName(),
                                 gameMaster.monsters.get(i).GetHp());
                     }
+                    System.out.println("\n\n");
                     turn++;
                     state = 0;
                     break;
