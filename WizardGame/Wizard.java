@@ -1,3 +1,5 @@
+package WizardGame;
+
 import java.util.InputMismatchException;
 import java.util.Random;
 public class Wizard implements Comparable<Wizard>
@@ -12,11 +14,11 @@ public class Wizard implements Comparable<Wizard>
     private final int criticalPer;
     private final int criticalDMG;
     private final int actionList;
-    Random rand = new Random();
     private int state = 0;
     private int selectMonsterNum = 0;
-    private String[] actions;
+    private final String[] actions;
     private boolean actionBool = true;
+    Random rand = new Random();
     public Wizard()
     {
         name = "Gandalf";
@@ -34,9 +36,10 @@ public class Wizard implements Comparable<Wizard>
     public Wizard(int num)
     {
         this(); // 기본 생성자에 아래 내용을 추가 하겠다는 뜻.
+
         name += num;
     }
-    public int SelectMonster(GameMaster gameMaster,Wizard wizard)
+    public int SelectMonster(GameMaster gameMaster)
     {
         // 이 함수의 목적은 어떠한 몬스터를 공격할지 정하고 그 몬스터의 순서가 몇번째인지 반환하는 함수이다.
         // 처음 실행되면 state 변수가 0부터 시작하고 몬스터들의 정보를 출력한 다음 state 변수를 1로 바꾼다.
@@ -47,7 +50,7 @@ public class Wizard implements Comparable<Wizard>
         switch(state)
         {
             case 0:
-                System.out.println(gameMaster.wizardCount+"번째의"+(gameMaster.wizards.indexOf(wizard)+1)+"번째 "+ wizard.GetName() +"의 차례이다.");
+                System.out.println(gameMaster.wizardCount+"번째의"+(gameMaster.wizards.indexOf(this)+1)+"번째 "+ this.GetName() +"의 차례이다.");
 
                 for (int i = 0; i < gameMaster.monsters.size(); i++) {
                     System.out.printf("%d. 이름: %s  HP: %d\t", i + 1, gameMaster.monsters.get(i).GetName(), gameMaster.monsters.get(i).GetHp());
@@ -74,7 +77,7 @@ public class Wizard implements Comparable<Wizard>
         }
         if (state == 1)
         {
-            SelectMonster( gameMaster, wizard);
+            SelectMonster(gameMaster);
         }
         else
         {
@@ -82,75 +85,77 @@ public class Wizard implements Comparable<Wizard>
         }
         return selectMonsterNum;
     }
-
-    public void Attack(GameMaster gameMaster,Monster monster,Wizard wizard)
+public void Attack(GameMaster gameMaster,Monster monster)
+{
+    // 공격 방법을 정하고 그에 맞는 공격 함수를 실행한다. 여기서도 state 변수를 통해 행동을 제어하는데
+    // 먼저 안내문이 끝나면 1로 변화하고 1에서 어떤 공격을 받을지에 따라 갈린다.
+    // 일반공격이면 state 2로 간 다음 OriginAttack 함수를 실행하고 마법공격이면 state 3으로 가서 MagicAttack 함수를 실행한다.
+    int selectAttack = 0;
+    switch(state)
     {
-        //
-        int selectAttack = 0;
-        switch(state)
-        {
-            case 0:
-                System.out.println(wizard.GetName() +"의 공격 방법은 ?");
-                for (int i = 0 ; i < wizard.actions.length ; i++)
+        case 0:
+            System.out.println(this.GetName() +"의 공격 방법은 ?");
+            for (int i = 0 ; i < this.actions.length ; i++)
+            {
+                if ( i == 1)
                 {
-                    if ( i == 1)
-                    {
-                        System.out.printf("%s(현재 MP%d)",wizard.actions[i],wizard.mp);
-                    }
-                    else
-                    {
-                        System.out.printf("%s\t", wizard.actions[i]);
-                    }
+                    System.out.printf("%s(현재 MP%d)",this.actions[i],this.mp);
                 }
-                System.out.println();
-                state = 1;
-                break;
-            case 1:
-                try
+                else
                 {
-                    do {
-                        System.out.printf("1 부터 %d 까지 입력해 주세요\n",wizard.actionList);
-                        selectAttack = gameMaster.sc.nextInt();
-                    }while(selectAttack <= 0 || selectAttack > wizard.actionList );
-                }catch(InputMismatchException e)
-                {
-                    gameMaster.sc.nextLine();
+                    System.out.printf("%s\t", this.actions[i]);
                 }
-                if (selectAttack == 1)
-                {
-                    state = 2;
-                }
-                else if (selectAttack == 2)
-                {
-                    state = 3;
-                }
-                break;
-            case 2:
-                OriginAttack(monster);
-                System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
-                if (monster.GetHp() <= 0)
-                {
-                    System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n",monster.GetName());
-                }
-                state = 0;
-                break;
-            case 3:
-                MagicAttack(monster);
-                System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
-                if (monster.GetHp() <= 0)
-                {
-                    System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n\n",monster.GetName());
-                }
-                state = 0;
-                break;
-        }
-        if (state != 0)
-        {
-            Attack(gameMaster, monster,wizard);
-        }
-        actionBool = false;
+            }
+            System.out.println();
+            state = 1;
+            break;
+        case 1:
+            try
+            {
+                do {
+                    System.out.printf("1 부터 %d 까지 입력해 주세요\n",this.actionList);
+
+                selectAttack = gameMaster.sc.nextInt();
+                }while(selectAttack <= 0 || selectAttack > this.actionList );
+            }catch(InputMismatchException e)
+            {
+                gameMaster.sc.nextLine();
+            }
+            if (selectAttack == 1)
+            {
+                state = 2;
+            }
+            else if (selectAttack == 2)
+            {
+                state = 3;
+            }
+            break;
+        case 2:
+            OriginAttack(monster);
+            System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
+            if (monster.GetHp() <= 0)
+            {
+                System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n\n",monster.GetName());
+            }
+            state = 0;
+            break;
+        case 3:
+            MagicAttack(monster);
+            System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
+            if (monster.GetHp() <= 0)
+            {
+                System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n\n",monster.GetName());
+            }
+            state = 0;
+            break;
+    }
+    if (state != 0)
+    {
+        Attack(gameMaster, monster);
     }
 
+    actionBool = false;
+}
     public void OriginAttack(Monster monster)
     {
         System.out.println("일반공격");
@@ -163,7 +168,7 @@ public class Wizard implements Comparable<Wizard>
         if (mp >= magicCost)
         {
             SetMp(magicCost);
-            if (rand.nextInt(101) >criticalPer)
+            if (rand.nextInt(101) < criticalPer)
             {
                 monster.SetHp(magicDMG + criticalDMG);
             }
@@ -177,7 +182,6 @@ public class Wizard implements Comparable<Wizard>
             System.out.printf("가지고 있는 MP에 비해 요구량이 큰 공격을 사용하여 %s을(를) 사용합니다.\n",this.actions[0]);
             OriginAttack(monster);
         }
-
     }
     public int GetHp()
     {
@@ -216,8 +220,12 @@ public class Wizard implements Comparable<Wizard>
     {
         return actionBool;
     }
+
+
+    // 마법사의 순서를 이름순으로 오름차순 정렬하기 위해 Comparable 인터페이스를 상속받았다.
     @Override
-    public int compareTo(Wizard wiz) {
+    public int compareTo(Wizard wiz)
+    {
         return this.name.compareTo(wiz.name);
     }
 }

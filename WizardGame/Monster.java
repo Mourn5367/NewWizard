@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+package WizardGame;
+
 public class Monster implements Comparable<Monster>
 {
     private String name = "";
@@ -44,6 +43,7 @@ public class Monster implements Comparable<Monster>
         return name;
     }
 
+    // 몬스터의 순서를 이름순으로 오름차순 정렬하기 위해 Comparable 인터페이스를 상속받았다.
     @Override
     public int compareTo(Monster mon) {
         return this.name.compareTo(mon.name);

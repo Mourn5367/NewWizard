@@ -1,7 +1,6 @@
+package WizardGame;
+
 import java.util.Random;
-import java.util.Scanner;
-
-
 public class Main
 {
 
@@ -12,7 +11,6 @@ public class Main
         boolean run = true;
         Random rand = new Random();
         GameMaster gameMaster = new GameMaster();
-        Scanner sc = new Scanner(System.in);
 
         while(run)
         {
@@ -23,10 +21,9 @@ public class Main
                     for (int i = 0; i < gameMaster.wizardCount; i++)
                     {
                         int indexWizard = gameMaster.SelectWizard();
-                        int selectMon = gameMaster.wizards.get(indexWizard).SelectMonster(gameMaster,gameMaster.wizards.get(indexWizard));
-                        gameMaster.wizards.get(indexWizard).Attack(gameMaster,gameMaster.monsters.get(selectMon-1),gameMaster.wizards.get(indexWizard));
+                        int selectMon = gameMaster.wizards.get(indexWizard).SelectMonster(gameMaster);
+                        gameMaster.wizards.get(indexWizard).Attack(gameMaster,gameMaster.monsters.get(selectMon-1));
                         gameMaster.RemoveMonster(gameMaster.monsters);
-                        gameMaster.MoveWizardToNoActionList();
                         if (gameMaster.monsters.isEmpty())
                         {
                             System.out.println("적을 전부 죽였다.");
@@ -45,23 +42,20 @@ public class Main
                     break;
                     // 몬스터가 때리기
                 case 1:
-                    gameMaster.MoveNoActionListToWizards();
+                    gameMaster.SetActionTrue();
+                    gameMaster.ActionWizardCountClear();
                     for (int i = 0 ; i< gameMaster.monsterCount; i++)
                     {
                         int randWizard = rand.nextInt(gameMaster.wizardCount);
-//                        gameMaster.monsters.get(i).Attack(gameMaster.wizardsNoAction.get(randWizard));
-//                        gameMaster.RemoveWizard(gameMaster.wizardsNoAction);
                         gameMaster.monsters.get(i).Attack(gameMaster.wizards.get(randWizard));
                         gameMaster.RemoveWizard(gameMaster.wizards);
                         if (gameMaster.wizards.isEmpty())
-//                        if (gameMaster.wizardsNoAction.isEmpty())
                         {
                             System.out.println("플레이어 유닛이 전부 죽었다.\n");
                             break;
                         }
                     }
                     if (gameMaster.wizards.isEmpty())
-//                    if (gameMaster.wizardsNoAction.isEmpty())
                     {
                         state = 4;
                         break;
