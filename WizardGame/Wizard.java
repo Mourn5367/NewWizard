@@ -1,5 +1,8 @@
+// 2024_06_12_알고리즘_실습과제
+// 한국폴리텍대학_서울정수캠퍼스_인공지능소프트웨어학과
+// 2401110252_박지수
+// 마법사로 몬스터를 물리치는 게임
 package WizardGame;
-
 import java.util.InputMismatchException;
 import java.util.Random;
 public class Wizard implements Comparable<Wizard>
@@ -23,7 +26,7 @@ public class Wizard implements Comparable<Wizard>
     {
         name = "Gandalf";
         hp = 80;
-        mp = 30;
+        mp = 100;
         originDMG = 5;
         magicDMG = 30;
         magicCost = 30;
@@ -50,7 +53,7 @@ public class Wizard implements Comparable<Wizard>
         switch(state)
         {
             case 0:
-                System.out.println(gameMaster.wizardCount+"번째의"+(gameMaster.wizards.indexOf(this)+1)+"번째 "+ this.GetName() +"의 차례이다.");
+                System.out.println(this.GetName() +"의 차례이다.");
 
                 for (int i = 0; i < gameMaster.monsters.size(); i++) {
                     System.out.printf("%d. 이름: %s  HP: %d\t", i + 1, gameMaster.monsters.get(i).GetName(), gameMaster.monsters.get(i).GetHp());
@@ -132,7 +135,7 @@ public void Attack(GameMaster gameMaster,Monster monster)
             break;
         case 2:
             OriginAttack(monster);
-            System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
+            System.out.printf("%s의 체력이 %d가 되었다..!\n", monster.GetName(), monster.GetHp());
             if (monster.GetHp() <= 0)
             {
                 System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n\n",monster.GetName());
@@ -141,7 +144,7 @@ public void Attack(GameMaster gameMaster,Monster monster)
             break;
         case 3:
             MagicAttack(monster);
-            System.out.printf("%s의 체력이 %d가 되었다..!", monster.GetName(), monster.GetHp());
+            System.out.printf("%s의 체력이 %d가 되었다..!\n", monster.GetName(), monster.GetHp());
             if (monster.GetHp() <= 0)
             {
                 System.out.printf("%s은(는) 마침내 숨을 거두었다..!\n\n",monster.GetName());
@@ -170,6 +173,7 @@ public void Attack(GameMaster gameMaster,Monster monster)
             SetMp(magicCost);
             if (rand.nextInt(101) < criticalPer)
             {
+                System.out.println("크리티컬 발생 !");
                 monster.SetHp(magicDMG + criticalDMG);
             }
             else

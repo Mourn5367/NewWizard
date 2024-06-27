@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba3155f8-e16e-48fd-9031-dc40ba620640" name="Changes" comment="" />
+    <list default="true" id="ba3155f8-e16e-48fd-9031-dc40ba620640" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WizardGame/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WizardGame/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WizardGame/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WizardGame/Wizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/GameMaster$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/GameMaster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/Monster.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/2024_05_30/Monster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/2024_05_30/Wizard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/sdsd.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/2024_05_30/untitled/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/2024_05_30/untitled/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sdsd.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,28 +27,44 @@
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Mourn5367"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Mourn5367/WizardVer2.git",
+    "accountId": "a2f8f288-d202-406a-977d-d54c599ceda5"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2hAkSor1JDVx9PUSiqbS0PVHnO0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/03_알고리즘실습/2024_05_30",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/03_알고리즘실습/2024_05_30&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -48,6 +77,9 @@
       <option name="presentableId" value="Default" />
       <updated>1717044274673</updated>
       <workItem from="1717044275781" duration="49000" />
+      <workItem from="1718191185681" duration="9000" />
+      <workItem from="1718191203172" duration="34000" />
+      <workItem from="1719485028440" duration="3000" />
     </task>
     <servers />
   </component>

@@ -9,7 +9,7 @@ public class Monster implements Comparable<Monster>
     public Monster(String name)
     {
         this.name = name;
-        hp = 5;
+        hp = 100;
         originDMG = 10;
     }
 
